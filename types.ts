@@ -1,16 +1,20 @@
-
 export enum PlatformStatus {
     Ready = 'Ready',
     NeedsLogin = 'Needs Login',
-    Outdated = 'Outdated Adapter',
+    Outdated = 'Outdated',
     Blocked = 'Blocked',
-    Updating = 'Updating Adapter',
+    Updating = 'Updating',
 }
 
 export enum AdapterStatus {
-    UpToDate = 'Up to date',
-    UpdateAvailable = 'Update available',
-    Updating = 'Updating...',
+    UpToDate = 'Up to Date',
+    UpdateAvailable = 'Update Available',
+    Updating = 'Updating',
+}
+
+export interface Adapter {
+    version: string;
+    status: AdapterStatus;
 }
 
 export interface Platform {
@@ -18,23 +22,17 @@ export interface Platform {
     name: string;
     status: PlatformStatus;
     conversationCount: number;
-    lastRun?: Date;
-    adapter: {
-        version: string;
-        status: AdapterStatus;
-        lastChecked: Date;
-    };
+    adapter: Adapter;
 }
 
 export enum ExportFormat {
-    JSONL = 'JSONL',
-    Markdown = 'Markdown',
-    ZIP = 'ZIP Bundle',
+    Markdown = "Markdown (.md)",
+    JSONL = "JSONL (.jsonl)",
+    ZIP = "ZIP (.zip)",
 }
 
 export enum JobStatus {
     Idle = 'Idle',
-    Configuring = 'Configuring',
     Running = 'Running',
     Completed = 'Completed',
     Failed = 'Failed',
@@ -61,4 +59,7 @@ export interface PlatformProgress {
     };
 }
 
-export type View = 'home' | 'platforms' | 'exports' | 'analysis' | 'schedules' | 'settings' | 'status';
+export interface Settings {
+    vaultEncryption: boolean;
+    telemetry: boolean;
+}

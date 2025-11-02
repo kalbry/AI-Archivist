@@ -1,9 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!--
+      The Content-Security-Policy is a crucial security feature.
+      It helps detect and mitigate certain types of attacks, including Cross-Site Scripting (XSS) and data injection attacks.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; font-src 'self';" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Archivist</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,15 +30,16 @@
   <script type="importmap">
 {
   "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
     "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
   }
 }
 </script>
 </head>
   <body class="bg-gray-900 text-gray-100 font-sans">
     <div id="root"></div>
+    <!-- The bundled React script will be loaded here by your build process -->
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
