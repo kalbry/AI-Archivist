@@ -1,0 +1,5 @@
+{
+  "name": "AI Archivist",
+  "description": "A privacy-first tool that captures, normalizes, and preserves your AI conversations across platforms into an owned, portable archive. This application provides a user-friendly interface to simulate the archiving process.",
+  "requestFramePermissions": []
+}
