@@ -1,0 +1,70 @@
+{
+  "chatgpt": {
+    "name": "ChatGPT",
+    "baseUrl": "https://chat.openai.com",
+    "selectors": {
+      "loginButton": "button[data-testid='login-button']",
+      "conversationList": "nav[data-testid='conversation-list']",
+      "conversationItem": "a[data-testid='conversation-item']",
+      "messageList": "div[data-testid='conversation-messages']",
+      "userMessage": "div[data-testid='user-message']",
+      "assistantMessage": "div[data-testid='assistant-message']",
+      "conversationTitle": "h1[data-testid='conversation-title']"
+    },
+    "waitForAuthentication": {
+      "selector": "nav[data-testid='conversation-list']",
+      "timeout": 300000
+    }
+  },
+  "claude": {
+    "name": "Claude",
+    "baseUrl": "https://claude.ai",
+    "selectors": {
+      "loginButton": "button[data-testid='login']",
+      "conversationList": "div[data-testid='conversation-list']",
+      "conversationItem": "div[data-testid='conversation-item']",
+      "messageList": "div[data-testid='chat-messages']",
+      "userMessage": "div[data-testid='user-message']",
+      "assistantMessage": "div[data-testid='assistant-message']",
+      "conversationTitle": "h2[data-testid='chat-title']"
+    },
+    "waitForAuthentication": {
+      "selector": "div[data-testid='conversation-list']",
+      "timeout": 300000
+    }
+  },
+  "gemini": {
+    "name": "Gemini",
+    "baseUrl": "https://gemini.google.com",
+    "selectors": {
+      "loginButton": "button[data-id='signin']",
+      "conversationList": "div[data-id='chat-list']",
+      "conversationItem": "div[data-id='chat-item']",
+      "messageList": "div[data-id='message-list']",
+      "userMessage": "div[data-role='user-message']",
+      "assistantMessage": "div[data-role='model-response']",
+      "conversationTitle": "h1[data-id='chat-title']"
+    },
+    "waitForAuthentication": {
+      "selector": "div[data-id='chat-list']",
+      "timeout": 300000
+    }
+  },
+  "perplexity": {
+    "name": "Perplexity",
+    "baseUrl": "https://perplexity.ai",
+    "selectors": {
+      "loginButton": "button[aria-label='Sign In']",
+      "conversationList": "div[role='list'][aria-label='Conversations']",
+      "conversationItem": "div[role='listitem']",
+      "messageList": "div[role='log']",
+      "userMessage": "div[role='user-query']",
+      "assistantMessage": "div[role='assistant-response']",
+      "conversationTitle": "h2[role='heading']"
+    },
+    "waitForAuthentication": {
+      "selector": "div[role='list'][aria-label='Conversations']",
+      "timeout": 300000
+    }
+  }
+}
