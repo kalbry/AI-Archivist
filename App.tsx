@@ -6,6 +6,8 @@ import AdaptersView from './components/AdaptersView';
 import SettingsView from './components/SettingsView';
 import DocsView from './components/DocsView';
 import Wizard from './components/Wizard';
+import { Button } from './components/ui/Button';
+import { cn } from './lib/utils';
 import { ipcApi } from './ipcApi';
 
 const initialPlatforms: Platform[] = [
@@ -125,28 +127,48 @@ const App: React.FC = () => {
             default:
                 const runnableCount = getRunnablePlatforms().length;
                 return (
-                    <div>
-                        <header className="flex justify-between items-center mb-6">
-                            <div>
-                                <h2 className="text-3xl font-bold text-white">Dashboard</h2>
-                                <p className="text-gray-400">Select platforms to begin an archive run.</p>
+                    <div className="animate-fade-in">
+                        <header className="flex justify-between items-center mb-8">
+                            <div className="space-y-1">
+                                <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
+                                <p className="text-surface-400">Select platforms to begin an archive run</p>
                             </div>
-                            <button 
-                                onClick={handleOpenWizard} 
+                            <Button
+                                onClick={handleOpenWizard}
                                 disabled={runnableCount === 0}
-                                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3 px-6 rounded-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105"
+                                size="lg"
+                                className={cn(
+                                    "relative overflow-hidden",
+                                    "before:absolute before:inset-0 before:-translate-x-full",
+                                    "before:animate-[shimmer_2s_infinite]",
+                                    "before:bg-gradient-to-r before:from-transparent before:via-white/5 before:to-transparent"
+                                )}
                             >
                                 Start New Archive Run ({runnableCount} selected)
-                            </button>
+                            </Button>
                         </header>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                            {platforms.map(p => (
-                                <PlatformTile
+                        <div 
+                            className={cn(
+                                "grid gap-6 animate-slide-up",
+                                "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
+                                "[--animation-delay:200ms] [animation-fill-mode:both]"
+                            )}
+                        >
+                            {platforms.map((p, index) => (
+                                <div 
                                     key={p.id}
-                                    platform={p}
-                                    isSelected={selectedPlatforms.has(p.id)}
-                                    onSelect={() => handleSelectPlatform(p.id)}
-                                />
+                                    className={cn(
+                                        "animate-slide-up",
+                                        `[--animation-delay:${(index + 1) * 100}ms]`,
+                                        "[animation-fill-mode:both]"
+                                    )}
+                                >
+                                    <PlatformTile
+                                        platform={p}
+                                        isSelected={selectedPlatforms.has(p.id)}
+                                        onSelect={() => handleSelectPlatform(p.id)}
+                                    />
+                                </div>
                             ))}
                         </div>
                     </div>
@@ -155,22 +177,31 @@ const App: React.FC = () => {
     };
 
     return (
-        <div className="bg-gray-900 text-gray-200 min-h-screen flex font-sans">
-            <Sidebar currentView={view} onViewChange={setView} />
-            <main className="flex-1 p-8 overflow-y-auto">
-                {renderView()}
-            </main>
-            <Wizard
-                isOpen={isWizardOpen}
-                onClose={handleCloseWizard}
-                onStartRun={handleStartRun}
-                platforms={getRunnablePlatforms()}
-                formats={formats}
-                onToggleFormat={handleToggleFormat}
-                jobStatus={jobStatus}
-                logs={logs}
-                progress={progress}
-            />
+        <div className={cn(
+            "min-h-screen font-sans antialiased",
+            "bg-gradient-to-b from-gray-900 to-gray-950",
+            "text-gray-200 relative overflow-hidden"
+        )}>
+            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+            <div className="relative flex min-h-screen">
+                <Sidebar currentView={view} onViewChange={setView} />
+                <main className="flex-1 p-8 overflow-y-auto">
+                    <div className="container mx-auto max-w-7xl">
+                        {renderView()}
+                    </div>
+                </main>
+                <Wizard
+                    isOpen={isWizardOpen}
+                    onClose={handleCloseWizard}
+                    onStartRun={handleStartRun}
+                    platforms={getRunnablePlatforms()}
+                    formats={formats}
+                    onToggleFormat={handleToggleFormat}
+                    jobStatus={jobStatus}
+                    logs={logs}
+                    progress={progress}
+                />
+            </div>
         </div>
     );
 };
