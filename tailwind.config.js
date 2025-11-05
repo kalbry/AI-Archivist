@@ -36,9 +36,9 @@ module.exports = {
         }
       },
       animation: {
-        'fade-in': 'fadeIn var(--transition-normal) var(--ease-default)',
-        'slide-up': 'slideUp var(--transition-normal) var(--ease-default)',
-        'slide-down': 'slideDown var(--transition-normal) var(--ease-default)',
+        'fade-in': 'fadeIn 300ms var(--ease-default)',
+        'slide-up': 'slideUp 300ms var(--ease-default)',
+        'slide-down': 'slideDown 300ms var(--ease-default)',
       },
       keyframes: {
         fadeIn: {
@@ -52,6 +52,11 @@ module.exports = {
         slideDown: {
           '0%': { transform: 'translateY(-10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        shimmer: {
+            '100%': {
+              transform: 'translateX(100%)',
+            },
         },
       },
     },

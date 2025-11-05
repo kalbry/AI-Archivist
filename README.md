@@ -2,42 +2,37 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# AI Archivist
 
 This contains everything you need to run your app locally.
 
-View your app in AI Studio: https://ai.studio/apps/drive/14KopxeaB9dyr9pfe8-sgIRF24PyK7yv-
-
 ## Run Locally
 
-**Prerequisites:** Node.js (use Node LTS)
+**Prerequisites:** Node.js (we recommend an LTS release like Node 18 or 20)
 
-We recommend using an LTS Node release (Node 18 or Node 20). Native modules such as `better-sqlite3` provide prebuilt binaries for LTS versions and will install reliably on those runtimes.
+1.  **Install Dependencies:**
+    Open your terminal in the project root and run:
+    ```sh
+    npm install
+    ```
 
-If you use nvm (macOS/Linux) or nvm-windows, you can switch to Node 18 with:
+2.  **Run in Development Mode:**
+    This project uses Vite for a fast frontend development experience with hot-reloading. You'll need two terminal windows.
 
-```powershell
-# nvm (macOS/Linux)
-nvm install 18
-nvm use 18
+    *   In your **first terminal**, start the Vite dev server:
+        ```sh
+        npm run dev
+        ```
+    *   In your **second terminal**, start the Electron application shell:
+        ```sh
+        npm start
+        ```
 
-# nvm-windows
-nvm install 18.20.0
-nvm use 18.20.0
-```
+    The Electron window will open and load the app from the Vite server. Changes you make to the React code will now appear instantly.
 
-You can also use the provided `.nvmrc` to pick the recommended version:
-
-```powershell
-nvm use # will read .nvmrc and switch to Node 18
-```
-
-1. Install dependencies:
-   ```powershell
-   npm install
-   ```
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app in dev mode:
-   ```powershell
-   npm run dev
-   ```
+3.  **Build for Production:**
+    To package the application for distribution, run:
+    ```sh
+    npm run electron:build
+    ```
+    This will create a production-ready installer in the `dist` folder.

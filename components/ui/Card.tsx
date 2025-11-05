@@ -1,6 +1,6 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 
 const cardVariants = cva(
   'rounded-xl transition-all duration-200',
@@ -29,9 +29,16 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement>,
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, hover, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? React.Fragment : 'div';
+    // FIX: React.Fragment cannot accept a `ref` prop, which caused a type error.
+    // The original implementation of `asChild` was attempting to pass a ref to a
+    // Fragment. This has been corrected by handling the `asChild` case separately.
+    // Note: This makes `asChild` render an unstyled wrapper, losing styles.
+    if (asChild) {
+      return <React.Fragment>{props.children}</React.Fragment>;
+    }
+
     return (
-      <Comp
+      <div
         ref={ref}
         className={cn(cardVariants({ variant, hover, className }))}
         {...props}
