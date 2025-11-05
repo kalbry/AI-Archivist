@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, AdapterStatus } from '../types';
+import { Platform, AdapterStatus } from '@/types';
 import { PLATFORM_LOGOS, CheckCircleIcon, ClockIcon, SpinnerIcon, ShieldCheckIcon } from './Icons';
 
 interface AdaptersViewProps {

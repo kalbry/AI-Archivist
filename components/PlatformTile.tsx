@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, PlatformStatus } from '../types';
+import { Platform, PlatformStatus } from '@/types';
 import { CheckCircleIcon, ExclamationTriangleIcon, ClockIcon, XCircleIcon, SpinnerIcon, PLATFORM_LOGOS } from './Icons';
 import { Card, CardContent } from './ui/Card';
 import { cn } from '@/lib/utils';

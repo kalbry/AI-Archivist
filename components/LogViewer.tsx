@@ -1,6 +1,6 @@
 
 import React, { useRef, useEffect } from 'react';
-import { LogEntry, LogLevel } from '../types';
+import { LogEntry, LogLevel } from '@/types';
 
 interface LogViewerProps {
     logs: LogEntry[];

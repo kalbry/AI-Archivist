@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Platform, ExportFormat, JobStatus, LogEntry, PlatformProgress } from '../types';
+import { Platform, ExportFormat, JobStatus, LogEntry, PlatformProgress } from '@/types';
 import { JsonIcon, DocumentIcon, ZipIcon, CheckCircleIcon, XCircleIcon, ArrowRightIcon } from './Icons';
 import ProgressBar from './ProgressBar';
 import LogViewer from './LogViewer';

@@ -1,6 +1,6 @@
 import React from 'react';
 import ToggleSwitch from './ToggleSwitch';
-import { Settings } from '../types';
+import { Settings } from '@/types';
 import { LockClosedIcon } from './Icons';
 
 interface SettingsViewProps {
