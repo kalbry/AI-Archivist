@@ -1,3 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* stylelint-disable */
+/* Animations and motion helpers.
+	Tailwind keyframes/animations are defined in tailwind.config.js.
+	Keep any project-specific keyframes or animation classes here. */

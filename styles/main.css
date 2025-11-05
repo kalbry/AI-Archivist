@@ -1,0 +1,9 @@
+/* stylelint-disable */
+/* Main stylesheet - include project tokens/overrides then Tailwind's layers */
+/* PostCSS requires @import to appear before other rules; import tokens first. */
+@import "./theme.css";
+@import "./animations.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
