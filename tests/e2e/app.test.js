@@ -1,19 +1,18 @@
 const { expect, test, beforeAll, afterAll } = require('@jest/globals');
-const { _electron: electron } = require('playwright');
-const path = require('path');
+const ElectronTestHelper = require('../helpers/electron');
 
 describe('AI Archivist E2E Tests', () => {
     let electronApp;
+    let window;
 
     beforeAll(async () => {
-        // Launch Electron app
-        electronApp = await electron.launch({
-            args: [path.join(__dirname, '../../main.js')],
-        });
+        const env = await ElectronTestHelper.setupTestEnvironment();
+        electronApp = env.electronApp;
+        window = env.window;
     });
 
     afterAll(async () => {
-        await electronApp.close();
+        await ElectronTestHelper.cleanup(electronApp);
     });
 
     test('app launches successfully', async () => {

@@ -19,25 +19,33 @@ const mockConfig = {
     }
 };
 
-// Mock Playwright's Page and Browser
+// Mock Playwright functionality
 const mockPage = {
-    goto: jest.fn(),
-    waitForSelector: jest.fn(),
-    $: jest.fn(),
-    $$: jest.fn(),
+    goto: jest.fn().mockResolvedValue(null),
+    waitForSelector: jest.fn().mockResolvedValue(true),
+    $: jest.fn().mockResolvedValue({ textContent: 'Test Content' }),
+    $$: jest.fn().mockResolvedValue([]),
     setDefaultTimeout: jest.fn(),
-    on: jest.fn()
+    on: jest.fn(),
+    evaluate: jest.fn().mockImplementation((fn) => fn()),
+    close: jest.fn().mockResolvedValue(null),
+    setContent: jest.fn().mockResolvedValue(null)
 };
 
 const mockBrowser = {
-    newPage: jest.fn(() => Promise.resolve(mockPage)),
-    close: jest.fn()
+    newPage: jest.fn().mockResolvedValue(mockPage),
+    close: jest.fn().mockResolvedValue(null),
+    contexts: jest.fn().mockResolvedValue([]),
+    newContext: jest.fn().mockResolvedValue({
+        newPage: jest.fn().mockResolvedValue(mockPage)
+    })
 };
 
 // Mock Playwright
 jest.mock('playwright', () => ({
     chromium: {
-        launch: jest.fn(() => Promise.resolve(mockBrowser))
+        launch: jest.fn().mockResolvedValue(mockBrowser),
+        connectOverCDP: jest.fn().mockResolvedValue(mockBrowser)
     }
 }));
 
